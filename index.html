@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RetroOS Music Player</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="https://w.soundcloud.com/player/api.js"></script>
+</head>
+<body>
+    <div id="app" :class="currentTheme">
+        <!-- Page de chargement -->
+        <div class="loading-page" v-if="!loaded">
+            <div class="loading-container">
+                <div class="loading-bar">
+                    <div class="loading-progress"></div>
+                </div>
+                <button @click="finishLoading" class="enter-button">Entrer dans RetroOS</button>
+            </div>
+        </div>
+
+        <!-- Bureau (Landing Page) -->
+        <div class="desktop" v-else>
+            <!-- Icônes du bureau -->
+            <div class="desktop-icons">
+                <div class="desktop-icon" @click="openMusicPlayer">
+                    <i class="fas fa-music"></i>
+                    <span>Music Player</span>
+                </div>
+                <div class="desktop-icon" @click="openThemes">
+                    <i class="fas fa-paint-roller"></i>
+                    <span>Thèmes</span>
+                </div>
+            </div>
+
+            <!-- Fenêtre du lecteur musical -->
+            <div v-show="musicPlayerOpen" class="window music-window" :style="{ left: windowPos.x + 'px', top: windowPos.y + 'px' }">
+                <div class="window-header" @mousedown="startDragging">
+                    <div class="window-controls">
+                        <span class="control close" @click="closeMusicPlayer"></span>
+                        <span class="control minimize"></span>
+                        <span class="control maximize"></span>
+                    </div>
+                    <div class="window-title">RetroOS Music Player</div>
+                </div>
+                <div class="window-content">
+                    <div class="music-player">
+                        <div class="track-info">
+                            <span class="track-title">{{ currentTrack.title }}</span>
+                            <span class="track-artist">{{ currentTrack.artist }}</span>
+                        </div>
+                        <div class="control-buttons">
+                            <button @click="previousTrack">
+                                <i class="fas fa-step-backward"></i>
+                            </button>
+                            <button @click="togglePlay" class="play-button">
+                                <i :class="isPlaying ? 'fas fa-pause' : 'fas fa-play'"></i>
+                            </button>
+                            <button @click="nextTrack">
+                                <i class="fas fa-step-forward"></i>
+                            </button>
+                        </div>
+                        <div id="soundcloud-player"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fenêtre des thèmes -->
+            <div v-show="themesOpen" class="window themes-window" :style="{ left: themesPos.x + 'px', top: themesPos.y + 'px' }">
+                <div class="window-header" @mousedown="startDraggingThemes">
+                    <div class="window-controls">
+                        <span class="control close" @click="closeThemes"></span>
+                        <span class="control minimize"></span>
+                        <span class="control maximize"></span>
+                    </div>
+                    <div class="window-title">Thèmes RetroOS</div>
+                </div>
+                <div class="window-content">
+                    <div class="themes-grid">
+                        <div class="theme-card" 
+                             :class="{ active: currentTheme === 'theme-default' }"
+                             @click="setTheme('theme-default')">
+                            <div class="theme-preview default-preview"></div>
+                            <span>Classic</span>
+                        </div>
+                        <div class="theme-card"
+                             :class="{ active: currentTheme === 'theme-aqua' }"
+                             @click="setTheme('theme-aqua')">
+                            <div class="theme-preview aqua-preview"></div>
+                            <span>Aqua</span>
+                        </div>
+                        <div class="theme-card"
+                             :class="{ active: currentTheme === 'theme-matrix' }"
+                             @click="setTheme('theme-matrix')">
+                            <div class="theme-preview matrix-preview"></div>
+                            <span>Matrix</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

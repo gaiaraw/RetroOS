@@ -1,0 +1,407 @@
+/* Base styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Loading Page */
+.loading-page {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease;
+}
+
+.loading-container {
+    text-align: center;
+}
+
+.loading-bar {
+    width: 300px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.loading-progress {
+    width: 100%;
+    height: 100%;
+    animation: loading 2s ease infinite;
+}
+
+@keyframes loading {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+.enter-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+/* Desktop */
+.desktop {
+    height: 100vh;
+    transition: background 0.3s ease;
+}
+
+/* Window Base Styles */
+.window {
+    position: absolute;
+    width: 400px;
+    border-radius: 5px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.window-header {
+    padding: 10px;
+    cursor: move;
+    display: flex;
+    align-items: center;
+}
+
+.window-controls {
+    display: flex;
+    gap: 8px;
+    margin-right: 15px;
+}
+
+.control {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.window-title {
+    flex-grow: 1;
+    text-align: center;
+    user-select: none;
+}
+
+.window-content {
+    padding: 20px;
+}
+
+/* Music Player Styles */
+.music-player {
+    text-align: center;
+}
+
+.track-info {
+    margin-bottom: 20px;
+}
+
+.track-title {
+    display: block;
+    font-size: 1.2em;
+    margin-bottom: 5px;
+}
+
+.control-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+button {
+    padding: 10px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+/* Desktop Icons */
+.desktop-icons {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+}
+
+.desktop-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    text-align: center;
+    width: 80px;
+}
+
+.desktop-icon i {
+    font-size: 2em;
+}
+
+/* Theme Specific Styles */
+
+/* Classic Theme */
+.theme-default {
+    background: linear-gradient(135deg, #2b1055, #7597de);
+    color: white;
+}
+
+.theme-default .loading-page {
+    background: linear-gradient(135deg, #2b1055, #7597de);
+}
+
+.theme-default .loading-progress {
+    background: linear-gradient(90deg, #5d7dea, #9666d2);
+}
+
+.theme-default .enter-button {
+    background: linear-gradient(135deg, #5d7dea, #9666d2);
+    color: white;
+}
+
+.theme-default .enter-button:hover {
+    transform: scale(1.1);
+    background: linear-gradient(135deg, #5d7dea, #9666d2) !important;
+}
+
+.theme-default .window {
+    background: rgba(43, 16, 85, 0.9);
+    border: 1px solid #7597de;
+}
+
+.theme-default .window-header {
+    background: rgba(93, 125, 234, 0.8);
+    color: white;
+}
+
+.theme-default .control.close { background: #ff5f57; }
+.theme-default .control.minimize { background: #ffbd2e; }
+.theme-default .control.maximize { background: #28c940; }
+
+.theme-default button {
+    background: linear-gradient(135deg, #5d7dea, #9666d2);
+    color: white;
+}
+
+.theme-default button:hover {
+    transform: scale(1.1);
+}
+
+.theme-default .desktop-icon {
+    color: white;
+}
+
+.theme-default .desktop-icon:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Aqua Theme */
+.theme-aqua {
+    background: linear-gradient(135deg, #89CFF0, #5FB6E7);
+    color: #333;
+}
+
+.theme-aqua .loading-page {
+    background: linear-gradient(135deg, #89CFF0, #5FB6E7);
+}
+
+.theme-aqua .loading-progress {
+    background: linear-gradient(90deg, #5FB6E7, #3A9FD0);
+}
+
+.theme-aqua .enter-button {
+    background: linear-gradient(135deg, #5FB6E7, #3A9FD0);
+    color: white;
+}
+
+.theme-aqua .enter-button:hover {
+    transform: scale(1.1);
+}
+
+.theme-aqua .window {
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid #89CFF0;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(137, 207, 240, 0.3);
+}
+
+.theme-aqua .window-header {
+    background: linear-gradient(to bottom, #89CFF0, #5FB6E7);
+    border-radius: 10px 10px 0 0;
+    color: white;
+}
+
+.theme-aqua .control.close { background: #FF6B6B; }
+.theme-aqua .control.minimize { background: #FFD93D; }
+.theme-aqua .control.maximize { background: #6BCB77; }
+
+.theme-aqua button {
+    background: linear-gradient(to bottom, #89CFF0, #5FB6E7);
+    color: white;
+    border-radius: 20px;
+}
+
+.theme-aqua button:hover {
+    background: linear-gradient(to bottom, #5FB6E7, #3A9FD0);
+    transform: scale(1.05);
+}
+
+.theme-aqua .desktop-icon {
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.theme-aqua .desktop-icon:hover {
+    transform: scale(1.1);
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Matrix Theme */
+.theme-matrix {
+    background: #000;
+    color: #00FF00;
+}
+
+.theme-matrix .loading-page {
+    background: #000;
+}
+
+.theme-matrix .loading-progress {
+    background: #00FF00;
+    box-shadow: 0 0 10px #00FF00;
+}
+
+.theme-matrix .enter-button {
+    background: #001400;
+    border: 1px solid #00FF00;
+    color: #00FF00;
+    text-shadow: 0 0 5px #00FF00;
+}
+
+.theme-matrix .enter-button:hover {
+    background: #002800;
+    box-shadow: 0 0 10px #00FF00;
+}
+
+.theme-matrix .window {
+    background: rgba(0, 20, 0, 0.95);
+    border: 1px solid #00FF00;
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
+}
+
+.theme-matrix .window-header {
+    background: #001400;
+    border-bottom: 1px solid #00FF00;
+    color: #00FF00;
+}
+
+.theme-matrix .control {
+    border: 1px solid #00FF00;
+    background: #001400;
+}
+
+.theme-matrix .control.close { border-color: #FF0000; }
+.theme-matrix .control.minimize { border-color: #00FF00; }
+.theme-matrix .control.maximize { border-color: #00FF00; }
+
+.theme-matrix .window-content {
+    color: #00FF00;
+    text-shadow: 0 0 5px #00FF00;
+}
+
+.theme-matrix button {
+    background: #001400;
+    border: 1px solid #00FF00;
+    color: #00FF00;
+    text-shadow: 0 0 5px #00FF00;
+}
+
+.theme-matrix button:hover {
+    background: #002800;
+    box-shadow: 0 0 10px #00FF00;
+}
+
+.theme-matrix .desktop-icon {
+    color: #00FF00;
+    text-shadow: 0 0 5px #00FF00;
+}
+
+.theme-matrix .desktop-icon:hover {
+    text-shadow: 0 0 10px #00FF00;
+    background: rgba(0, 255, 0, 0.1);
+}
+
+/* Theme Selection Window */
+.themes-window {
+    width: 500px;
+    height: 400px;
+}
+
+.themes-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 20px;
+}
+
+.theme-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.theme-preview {
+    width: 120px;
+    height: 80px;
+    border-radius: 8px;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.theme-card.active .theme-preview {
+    border-color: #fff;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/* Theme Previews */
+.default-preview {
+    background: linear-gradient(45deg, #2b1055, #7597de);
+    border: 1px solid #7597de;
+}
+
+.aqua-preview {
+    background: linear-gradient(45deg, #89CFF0, #5FB6E7);
+    border: 1px solid #89CFF0;
+}
+
+.matrix-preview {
+    background: #001400;
+    border: 1px solid #00FF00;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.matrix-preview::after {
+    content: "1 0 1";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #00FF00;
+    font-family: monospace;
+    text-shadow: 0 0 5px #00FF00;
+}
