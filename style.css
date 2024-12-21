@@ -1,3 +1,164 @@
+.theme-aqua {
+    background: linear-gradient(135deg, #89CFF0, #5FB6E7);
+    color: #333;
+}
+
+.theme-aqua .loading-page {
+    background: linear-gradient(135deg, #89CFF0, #5FB6E7);
+}
+
+.theme-aqua .loading-progress {
+    background: linear-gradient(90deg, #5FB6E7, #3A9FD0);
+}
+
+.theme-aqua .enter-button {
+    background: linear-gradient(135deg, #5FB6E7, #3A9FD0);
+    color: white;
+}
+
+.theme-aqua .enter-button:hover {
+    transform: scale(1.1);
+}
+
+.theme-aqua .window {
+    background: rgba(0, 0, 0, 0.75);
+    border: 1px solid #89CFF0;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(137, 207, 240, 0.3);
+}
+
+.theme-aqua .window-header {
+    background: linear-gradient(to bottom, #89CFF0, #5FB6E7);
+    border-radius: 10px 10px 0 0;
+    color: white;
+}
+
+.theme-aqua .window-content {
+    color: white;
+}
+
+.theme-aqua .track-title {
+    color: white;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    font-weight: 600;
+}
+
+.theme-aqua .track-artist {
+    color: #e6ffff;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+.theme-aqua .control.close { background: #FF6B6B; }
+.theme-aqua .control.minimize { background: #FFD93D; }
+.theme-aqua .control.maximize { background: #6BCB77; }
+
+.theme-aqua button {
+    background: linear-gradient(to bottom, #89CFF0, #5FB6E7);
+    color: white;
+    border-radius: 20px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.theme-aqua button:hover {
+    background: linear-gradient(to bottom, #5FB6E7, #3A9FD0);
+    transform: scale(1.05);
+}
+
+.theme-aqua .desktop-icon {
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.theme-aqua .desktop-icon:hover {
+    transform: scale(1.1);
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.theme-aqua {
+    --bg-color: linear-gradient(135deg, #89CFF0, #5FB6E7);
+    --window-bg: rgba(0, 0, 0, 0.75);
+    --text-color: #fff;
+    --border-color: rgba(102, 217, 239, 0.5);
+    --accent-color: #00ffff;
+    --shadow-color: rgba(102, 217, 239, 0.4);
+    background: var(--bg-color);
+    position: relative;
+    overflow: hidden;
+}
+
+.theme-aqua::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('assets/images/final-perfect-bubbles.svg');
+    background-repeat: no-repeat;
+    background-size: 140% 140%;
+    animation: bubbleFloat 50s ease-in-out infinite;
+    opacity: 0.6;
+    pointer-events: none;
+    z-index: 1;
+    transform-origin: center center;
+}
+
+.theme-aqua::after {
+    content: '';
+    position: absolute;
+    top: -40%;
+    left: -40%;
+    right: -40%;
+    bottom: -40%;
+    background-image: url('assets/images/final-perfect-bubbles.svg');
+    background-repeat: no-repeat;
+    background-size: 180% 180%;
+    animation: bubbleFloat2 65s ease-in-out infinite;
+    opacity: 0.4;
+    pointer-events: none;
+    z-index: 1;
+    transform: scale(0.8) rotate(165deg);
+}
+
+.theme-aqua button {
+    background: linear-gradient(135deg, #00ffff, #66d9ef);
+    color: var(--text-color);
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(5px);
+}
+
+.theme-aqua button::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 60%);
+    transform: rotate(30deg);
+    animation: shimmer 3s infinite linear;
+}
+
+:root {
+    --mouse-x: 0px;
+    --mouse-y: 0px;
+}
+
+.window, .enter-button, button {
+    position: relative;
+    z-index: 2;
+}
+
+@keyframes shimmer {
+    0% {
+        transform: rotate(30deg) translateY(100%);
+    }
+    100% {
+        transform: rotate(30deg) translateY(-100%);
+    }
+}
+
 /* Base styles */
 body {
     margin: 0;
@@ -56,23 +217,42 @@ body {
 
 /* Window Base Styles */
 .window {
+    background: var(--window-bg);
+    backdrop-filter: blur(12px);
+    border-radius: 10px;
+    box-shadow: 0 10px 30px var(--shadow-color);
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    min-width: 300px;
     position: absolute;
     width: 400px;
-    border-radius: 5px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
 }
 
 .window-header {
-    padding: 10px;
-    cursor: move;
+    background: rgba(0, 0, 0, 0.85);
+    padding: 8px;
     display: flex;
     align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid var(--border-color);
+    -webkit-app-region: drag;
+}
+
+.window-title {
+    flex-grow: 1;
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-color);
+    margin: 0;
+    font-weight: 500;
+    letter-spacing: 0.3px;
 }
 
 .window-controls {
     display: flex;
     gap: 8px;
-    margin-right: 15px;
+    margin-left: 8px;
+    -webkit-app-region: no-drag;
 }
 
 .control {
@@ -80,16 +260,40 @@ body {
     height: 12px;
     border-radius: 50%;
     cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
 }
 
-.window-title {
-    flex-grow: 1;
-    text-align: center;
-    user-select: none;
+.control:hover::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 6px;
+    height: 6px;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+}
+
+.control.close {
+    background: #ff5f57;
+    border: 1px solid #e0443e;
+}
+
+.control.minimize {
+    background: #ffbd2e;
+    border: 1px solid #dea123;
+}
+
+.control.maximize {
+    background: #28c940;
+    border: 1px solid #1aab29;
 }
 
 .window-content {
-    padding: 20px;
+    padding: 16px;
+    color: var(--text-color);
 }
 
 /* Music Player Styles */
@@ -339,43 +543,6 @@ button {
     background: rgba(0, 255, 0, 0.1);
 }
 
-/* Theme Selection Window */
-.themes-window {
-    width: 500px;
-    height: 400px;
-}
-
-.themes-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    padding: 20px;
-}
-
-.theme-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    cursor: pointer;
-    padding: 10px;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-}
-
-.theme-preview {
-    width: 120px;
-    height: 80px;
-    border-radius: 8px;
-    border: 2px solid transparent;
-    transition: all 0.3s ease;
-}
-
-.theme-card.active .theme-preview {
-    border-color: #fff;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-}
-
 /* Theme Previews */
 .default-preview {
     background: linear-gradient(45deg, #2b1055, #7597de);
@@ -404,4 +571,63 @@ button {
     color: #00FF00;
     font-family: monospace;
     text-shadow: 0 0 5px #00FF00;
+}
+
+/* Theme Selection Window */
+.themes-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.themes-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    padding: 15px;
+    max-width: 400px;
+}
+
+.theme-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+}
+
+.theme-preview {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.theme-card:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.theme-card.active {
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+.theme-card.active .theme-preview {
+    border-color: var(--accent-color, #fff);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+}
+
+.theme-name {
+    font-size: 0.9em;
+    color: var(--text-color, #fff);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }

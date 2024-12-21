@@ -78,24 +78,26 @@
                     <div class="window-title">Thèmes RetroOS</div>
                 </div>
                 <div class="window-content">
-                    <div class="themes-grid">
-                        <div class="theme-card" 
-                             :class="{ active: currentTheme === 'theme-default' }"
-                             @click="setTheme('theme-default')">
-                            <div class="theme-preview default-preview"></div>
-                            <span>Classic</span>
-                        </div>
-                        <div class="theme-card"
-                             :class="{ active: currentTheme === 'theme-aqua' }"
-                             @click="setTheme('theme-aqua')">
-                            <div class="theme-preview aqua-preview"></div>
-                            <span>Aqua</span>
-                        </div>
-                        <div class="theme-card"
-                             :class="{ active: currentTheme === 'theme-matrix' }"
-                             @click="setTheme('theme-matrix')">
-                            <div class="theme-preview matrix-preview"></div>
-                            <span>Matrix</span>
+                    <div class="themes-container">
+                        <div class="themes-grid">
+                            <div class="theme-card" 
+                                 :class="{ active: currentTheme === 'theme-default' }"
+                                 @click="setTheme('theme-default')">
+                                <div class="theme-preview default-preview"></div>
+                                <span>Classic</span>
+                            </div>
+                            <div class="theme-card"
+                                 :class="{ active: currentTheme === 'theme-aqua' }"
+                                 @click="setTheme('theme-aqua')">
+                                <div class="theme-preview aqua-preview"></div>
+                                <span>Aqua</span>
+                            </div>
+                            <div class="theme-card"
+                                 :class="{ active: currentTheme === 'theme-matrix' }"
+                                 @click="setTheme('theme-matrix')">
+                                <div class="theme-preview matrix-preview"></div>
+                                <span>Matrix</span>
+                            </div>
                         </div>
                     </div>
                 </div>

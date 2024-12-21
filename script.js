@@ -171,6 +171,20 @@ new Vue({
             this.isThemesDragging = false;
             document.removeEventListener('mousemove', this.onDragThemes);
             document.removeEventListener('mouseup', this.stopDraggingThemes);
+        },
+        handleKeydown(event) {
+            switch (event.key) {
+                case ' ': // Espace
+                    event.preventDefault(); // Empêche le défilement de la page
+                    this.togglePlay(); // Joue ou met en pause
+                    break;
+                case 'ArrowRight': // Flèche droite
+                    this.nextTrack(); // Passe à la piste suivante
+                    break;
+                case 'ArrowLeft': // Flèche gauche
+                    this.previousTrack(); // Revient à la piste précédente
+                    break;
+            }
         }
     },
     mounted() {
@@ -179,5 +193,7 @@ new Vue({
         if (savedTheme) {
             this.currentTheme = savedTheme;
         }
+        // Écoute des événements de touches
+        document.addEventListener('keydown', this.handleKeydown);
     }
 });
