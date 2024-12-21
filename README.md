@@ -1,6 +1,6 @@
-# RetroOS Music Player
+# RetroOS
 
-Un lecteur de musique rétro inspiré des interfaces des années 2000, créé avec Vue.js et l'API SoundCloud.
+Une interface rétro inspirée des systèmes d'exploitation des années 2000, avec un lecteur de musique intégré à SoundCloud.
 
 ![RetroOS Preview](preview.png)
 
@@ -27,7 +27,7 @@ Un lecteur de musique rétro inspiré des interfaces des années 2000, créé av
 
 1. Clonez le repository :
 ```bash
-git clone https://github.com/votre-username/retroos-music-player.git
+git clone https://github.com/votre-username/RetroOS.git
 ```
 
 2. Ouvrez `index.html` dans votre navigateur
