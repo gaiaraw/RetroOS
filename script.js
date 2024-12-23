@@ -8,18 +8,30 @@ new Vue({
             currentTheme: 'theme-default',
             isPlaying: false,
             currentTrackIndex: 0,
+            currentPlaylistIndex: 0,
+            isPlaylistDropdownOpen: false,
             player: null,
             baseUrl: 'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/',
-            playlist: [
+            playlists: [
                 {
-                    id: '25132104',
-                    title: 'Hometown',
-                    artist: 'French 79'
-                },
-                {
-                    id: '21559550',
-                    title: 'Salzburg',
-                    artist: 'Worakls'
+                    name: 'Metaphorical Music',
+                    tracks: [
+                        { id: '91429724', title: 'Blessing It Remix', artist: 'Nujabes' },
+                        { id: '91430033', title: 'Horn In The Middle', artist: 'Nujabes' },
+                        { id: '91430129', title: 'Lady Brown Feat. Cise Starr', artist: 'Nujabes' },
+                        { id: '91430785', title: 'Kumomi', artist: 'Nujabes' },
+                        { id: '91535099', title: 'Highs 2 Lows Feat. Cise Starr', artist: 'Nujabes' },
+                        { id: '91538561', title: 'Beat Laments the World', artist: 'Nujabes' },
+                        { id: '91539248', title: 'Letter form Yokosuka', artist: 'Nujabes' },
+                        { id: '91539425', title: 'Think Different Feat. Substant', artist: 'Nujabes' },
+                        { id: '91540824', title: 'A Day by Atmosphere Supreme', artist: 'Nujabes' },
+                        { id: '91541248', title: 'Next View Feat. Uyama Hiroto', artist: 'Nujabes' },
+                        { id: '91541928', title: 'Latitude Remix Feat. Five Deez', artist: 'Nujabes' },
+                        { id: '91542590', title: 'F.I.L.O. Feat. Shing02', artist: 'Nujabes' },
+                        { id: '91542844', title: 'Summer Gypsy', artist: 'Nujabes' },
+                        { id: '91543793', title: 'The Final View', artist: 'Nujabes' },
+                        { id: '49939510', title: 'Peaceland', artist: 'Nujabes' }
+                    ]
                 }
             ],
             windowPos: {
@@ -37,7 +49,7 @@ new Vue({
     },
     computed: {
         currentTrack() {
-            return this.playlist[this.currentTrackIndex];
+            return this.playlists[this.currentPlaylistIndex].tracks[this.currentTrackIndex];
         }
     },
     methods: {
@@ -121,7 +133,7 @@ new Vue({
         },
         nextTrack() {
             if (!this.player) return;
-            this.currentTrackIndex = (this.currentTrackIndex + 1) % this.playlist.length;
+            this.currentTrackIndex = (this.currentTrackIndex + 1) % this.playlists[this.currentPlaylistIndex].tracks.length;
             this.initPlayer();
             this.player.bind(SC.Widget.Events.READY, () => {
                 this.player.play();
@@ -129,7 +141,7 @@ new Vue({
         },
         previousTrack() {
             if (!this.player) return;
-            this.currentTrackIndex = (this.currentTrackIndex - 1 + this.playlist.length) % this.playlist.length;
+            this.currentTrackIndex = (this.currentTrackIndex - 1 + this.playlists[this.currentPlaylistIndex].tracks.length) % this.playlists[this.currentPlaylistIndex].tracks.length;
             this.initPlayer();
             this.player.bind(SC.Widget.Events.READY, () => {
                 this.player.play();
@@ -185,6 +197,22 @@ new Vue({
                     this.previousTrack(); // Revient à la piste précédente
                     break;
             }
+        },
+        togglePlaylistDropdown() {
+            this.isPlaylistDropdownOpen = !this.isPlaylistDropdownOpen;
+        },
+        selectPlaylist(index) {
+            this.currentPlaylistIndex = index;
+            this.isPlaylistDropdownOpen = false;
+            this.currentTrackIndex = 0;
+            this.initPlayer();
+        },
+        updatePlaylist(event) {
+            const selectedPlaylistName = event.target.value;
+            const selectedPlaylist = this.playlists.find(playlist => playlist.name === selectedPlaylistName);
+            this.currentTrackIndex = 0; // Réinitialiser l'index de la piste
+            this.playlist = selectedPlaylist.tracks; // Mettre à jour la playlist actuelle
+            this.initPlayer(); // Initialiser le lecteur avec la nouvelle playlist
         }
     },
     mounted() {

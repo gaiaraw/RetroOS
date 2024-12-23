@@ -46,6 +46,18 @@
                     <div class="window-title">RetroOS Music Player</div>
                 </div>
                 <div class="window-content">
+                    <div class="select-wrapper" :class="{ active: isPlaylistDropdownOpen }" @click="togglePlaylistDropdown">
+                        <strong>Playlist:</strong>
+                        <span>{{ playlists[currentPlaylistIndex].name }}</span>
+                        <ul class="select-options" v-show="isPlaylistDropdownOpen">
+                            <li v-for="(playlist, index) in playlists" 
+                                :key="playlist.name" 
+                                @click="selectPlaylist(index)">
+                                {{ playlist.name }}
+                            </li>
+                        </ul>
+                    </div>
+                    <hr class="separator">
                     <div class="music-player">
                         <div class="track-info">
                             <span class="track-title">{{ currentTrack.title }}</span>
